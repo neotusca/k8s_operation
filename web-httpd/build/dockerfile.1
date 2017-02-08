@@ -1,0 +1,11 @@
+FROM httpd:2.4.23-alpine
+
+
+COPY entrypoint.sh  /
+
+#COPY httpd-foreground /usr/local/bin/
+
+EXPOSE 80
+
+#CMD ["httpd-foreground"]
+ENTRYPOINT ["/entrypoint.sh"]

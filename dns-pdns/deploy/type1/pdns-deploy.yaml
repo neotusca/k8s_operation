@@ -1,0 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: pdns-deploy
+spec:
+  replicas: 6
+  template:
+    metadata:
+      labels:
+        run: pdns-deploy
+    spec:
+      containers:
+      - name: pdns-deploy
+        image: 192.168.254.20:5000/pdns:4.0.3-final
+        ports:
+        - name: bind-udp-53
+          containerPort: 53
+          protocol: UDP
+        - name: bind-tcp-53
+          containerPort: 53
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /etc/powerdns
+          name: conf
+        - mountPath: /data/nis
+          name: data
+        - mountPath: /data/named
+          name: log
+      volumes:
+      - name: conf
+        hostPath:
+            path: /data/PDNS_DIR/CONF
+      - name: data
+        hostPath:
+            path: /data/PDNS_DIR/DATA
+      - name: log
+        hostPath:
+            path: /data/PDNS_DIR/LOG

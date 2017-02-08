@@ -1,0 +1,37 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: wildfly-dep-21
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: wildfly-dep-21
+    spec:
+      containers:
+      - name: wildfly-dep-21
+        image: 192.168.254.20:5000/jboss/wildfly:8.2.1.Final-uc
+        ports:
+        - name: tcp-8080
+          containerPort: 8080
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /opt/jboss/wildfly/standalone/configuration
+          name: conf
+        - mountPath: /opt/jboss/wildfly/standalone/deployments
+          name: data
+        - mountPath: /opt/jboss/wildfly/standalone/log
+          name: log
+      volumes:
+      - name: conf
+        hostPath:
+            path: /data/WILDFLY_DIR/CONF
+      - name: data
+        hostPath:
+            path: /data/WILDFLY_DIR/DATA
+      - name: log
+        hostPath:
+            path: /data/WILDFLY_DIR/LOG
+      nodeSelector:
+        kubernetes.io/hostname: 192.168.0.21

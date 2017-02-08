@@ -1,0 +1,42 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: mariadb-dep
+spec:
+  template:
+    metadata:
+      labels:
+        run: mariadb-dep
+    spec:
+      containers:
+      - image: mariadb:10.1.20
+        name: mariadb
+        env:
+          # $ kubectl create secret generic mysql-pass --from-file=password.txt
+          # make sure password.txt does not have a trailing newline
+          # MYSQL_ROOT_PASSWORD, MYSQL_ALLOW_EMPTY_PASSWORD and MYSQL_RANDOM_ROOT_PASSWORD 
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-pass
+              key: password.txt
+        - name: MYSQL_ALLOW_EMPTY_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-pass
+              key: password.txt
+        - name: MYSQL_RANDOM_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-pass
+              key: password.txt
+        ports:
+        - containerPort: 3306
+          name: mariadb-port
+        volumeMounts:
+        - name: mysql-vol
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: mysql-vol
+        persistentVolumeClaim:
+          claimName: nfs-2-pvc

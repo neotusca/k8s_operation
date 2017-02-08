@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: mariadb-dep
+spec:
+  template:
+    metadata:
+      labels:
+        run: mariadb-dep
+    spec:
+      containers:
+      - image: mariadb:10.1.20
+        name: mariadb
+        ports:
+        - containerPort: 3306
+          name: tcp-3306
+        volumeMounts:
+        - name: mysql-vol
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: mysql-vol
+        persistentVolumeClaim:
+          claimName: nfs-2-pvc

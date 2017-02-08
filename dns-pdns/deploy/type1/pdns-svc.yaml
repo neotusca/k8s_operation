@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pdns-svc
+  namespace: default
+  labels:
+    app: pdns-deploy
+spec:
+  ports:
+  - name: bind-udp-53
+    port: 53
+    protocol: UDP
+    targetPort: 53
+  - name: bind-tcp-53
+    port: 53
+    protocol: TCP
+    targetPort: 53
+  selector:
+    run: pdns-deploy
+  sessionAffinity: None
+  type: NodePort

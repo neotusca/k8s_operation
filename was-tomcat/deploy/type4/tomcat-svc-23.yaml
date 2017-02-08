@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tomcat-svc-23
+spec:
+  selector:
+    run: tomcat-dep-23
+  ports:
+  - port: 8080
+    name: tcp-8080
+    targetPort: 8080
+    protocol: TCP
+  externalIPs: ["192.168.0.23"]

@@ -1,0 +1,8 @@
+FROM jboss/wildfly:8.2.1.Final
+
+
+COPY entrypoint.sh  /
+
+EXPOSE 8080
+
+ENTRYPOINT ["/entrypoint.sh"]

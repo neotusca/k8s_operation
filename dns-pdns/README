@@ -1,0 +1,4 @@
+type1 : mesh
+type2 : specified node  ingress
+type3 : specified node  process
+type4 : specified node  ingress & process

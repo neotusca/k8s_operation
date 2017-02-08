@@ -1,0 +1,39 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: httpd-dep-22
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: httpd-dep-22
+    spec:
+      containers:
+      - name: httpd-dep-22
+        image: 192.168.254.20:5000/httpd:2.4.23-alpine-final
+        #image: 192.168.254.20:5000/httpd:2.4.23
+        ports:
+        - name: http-tcp-80
+          containerPort: 80
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /usr/local/apache2/conf
+          name: conf
+        - mountPath: /usr/local/apache2/htdocs
+          name: data
+        - mountPath: /usr/local/apache2/logs
+          name: log
+      volumes:
+      - name: conf
+        hostPath:
+            path: /data/HTTPD_DIR/CONF
+      - name: data
+        hostPath:
+            path: /data/HTTPD_DIR/DATA
+      - name: log
+        hostPath:
+            path: /data/HTTPD_DIR/LOG
+      nodeSelector:
+        kubernetes.io/hostname: 192.168.0.22
+#        kubernetes.io/hostname: 192.168.254.21 (Fail)

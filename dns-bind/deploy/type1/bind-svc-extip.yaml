@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: bind-svc-extip
+spec:
+  selector:
+    run: bind-deploy
+  ports:
+  - port: 53
+    name: dns-udp-53
+    targetPort: 53
+    protocol: UDP
+  - port: 53
+    name: dns-tcp-53
+    targetPort: 53
+    protocol: TCP
+  - port: 953
+    name: dns-tcp-953
+    targetPort: 953
+    protocol: TCP
+  externalIPs: ["192.168.254.21", "192.168.254.22", "192.168.254.23"]

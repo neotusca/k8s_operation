@@ -1,0 +1,44 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: bind-21
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        run: bind-21
+    spec:
+      containers:
+      - name: bind-21
+        #image: 192.168.254.189:5000/bind:9.10.4-P4-final
+        image: 192.168.254.20:5000/bind:9.10.4-P4-final
+        ports:
+        - name: bind-udp-53
+          containerPort: 53
+          protocol: UDP
+        - name: bind-tcp-53
+          containerPort: 53
+          protocol: TCP
+        - name: bind-tcp-953
+          containerPort: 953
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /etc/named
+          name: conf
+        - mountPath: /data/nis
+          name: data
+        - mountPath: /data/named
+          name: log
+      volumes:
+      - name: conf
+        hostPath:
+            path: /data/BIND_DIR/CONF
+      - name: data
+        hostPath:
+            path: /data/BIND_DIR/DATA
+      - name: log
+        hostPath:
+            path: /data/BIND_DIR/LOG
+      nodeSelector:
+        kubernetes.io/hostname: 192.168.0.21

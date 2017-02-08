@@ -1,0 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: tomcat-dep-22
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: tomcat-dep-22
+    spec:
+      containers:
+      - name: tomcat-dep-22
+        #image: tomcat:8.5-alpine
+        image: 192.168.254.20:5000/tomcat:8.5-alpine-final
+        ports:
+        - name: tcp-8080
+          containerPort: 8080
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /usr/local/tomcat/conf
+          name: conf
+        - mountPath: /usr/local/tomcat/webapps
+          name: data
+        - mountPath: /usr/local/tomcat/logs
+          name: log
+      volumes:
+      - name: conf
+        hostPath:
+            path: /data/TOMCAT_DIR/CONF
+      - name: data
+        hostPath:
+            path: /data/TOMCAT_DIR/DATA
+      - name: log
+        hostPath:
+            path: /data/TOMCAT_DIR/LOG
+      nodeSelector:
+        kubernetes.io/hostname: 192.168.0.22
