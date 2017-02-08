@@ -1,0 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nginx-dep-21
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: nginx-dep-21
+    spec:
+      containers:
+      - name: nginx-dep-21
+        image: 192.168.254.20:5000/nginx:1.11-alpine-final
+        #image: 192.168.254.20:5000/nginx:1.11
+        ports:
+        - name: http-tcp-80
+          containerPort: 80
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /etc/nginx
+          name: conf
+        - mountPath: /usr/share/nginx/html
+          name: data
+        - mountPath: /var/log/nginx
+          name: log
+      volumes:
+      - name: conf
+        hostPath:
+            path: /data/NGINX_DIR/CONF
+      - name: data
+        hostPath:
+            path: /data/NGINX_DIR/DATA
+      - name: log
+        hostPath:
+            path: /data/NGINX_DIR/LOG
+      nodeSelector:
+        kubernetes.io/hostname: 192.168.0.21
