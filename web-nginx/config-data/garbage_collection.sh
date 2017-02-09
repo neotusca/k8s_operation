@@ -1,5 +1,5 @@
 RUNNING_UUID=`lsof | grep '/log/nginx' | awk '{print $9}' | awk -F'/' '{print $5}' | sort -u | grep -v ^$`
-CONF_LIST=`ls -1 CONF | awk -F'-' '{print $2}' | awk -F'.' '{print $1}' | grep -v ^$ | grep -v conf`
+CONF_LIST=`find CONF/ -type f -name nginx-*.conf | awk -F'-' '{print $2}' | awk -F'.' '{print $1}'`
 LOG_LIST=`ls -1 LOG`
 
 echo 'list-running  : '$RUNNING_UUID
