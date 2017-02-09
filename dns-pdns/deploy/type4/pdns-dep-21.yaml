@@ -1,0 +1,40 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: pdns-dep-21
+spec:
+  replicas: 4
+  template:
+    metadata:
+      labels:
+        run: pdns-dep-21
+    spec:
+      containers:
+      - name: pdns-dep-21
+        image: 192.168.254.20:5000/pdns:4.0.3-final
+        ports:
+        - name: pdns-udp-53
+          containerPort: 53
+          protocol: UDP
+        - name: pdns-tcp-53
+          containerPort: 53
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /etc/powerdns
+          name: conf
+        - mountPath: /data/nis
+          name: data
+        - mountPath: /data/named
+          name: log
+      volumes:
+      - name: conf
+        hostPath:
+            path: /data/PDNS_DIR/CONF
+      - name: data
+        hostPath:
+            path: /data/PDNS_DIR/DATA
+      - name: log
+        hostPath:
+            path: /data/PDNS_DIR/LOG
+      nodeSelector:
+        kubernetes.io/hostname: 192.168.0.21

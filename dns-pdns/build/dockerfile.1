@@ -1,0 +1,21 @@
+FROM centos:6.8
+MAINTAINER Lee taehun "harvana@medialog.co.kr"
+ENV CONF_DIR 'config_20161121'
+
+COPY build.sh  /tmp/build.sh
+RUN  /tmp/build.sh
+
+ADD $CONF_DIR/nis_160713.tar /data
+ADD $CONF_DIR/powerdnsconfig.tar /data/nis
+ADD $CONF_DIR/powerdns.tar /etc
+ADD $CONF_DIR/rsyslog.conf /etc
+
+
+COPY entrypoint.sh   /
+
+
+VOLUME ["/etc/powerdns","/data/nis"]
+
+EXPOSE 53/udp 53/tcp
+
+ENTRYPOINT ["/entrypoint.sh"]
