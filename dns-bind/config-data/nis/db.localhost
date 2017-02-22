@@ -1,0 +1,9 @@
+$TTL 43200
+@        IN     SOA     localhost. root.localhost. (
+                                        2011040901      ; serial (d. adams)
+                                        3600            ; refresh(1H)
+                                        1800            ; retry(30min)
+                                        1W              ; expiry(1Week)
+                                        43200)          ; minimum(1H)
+                IN      NS      localhost.
+@               IN      A       127.0.0.1

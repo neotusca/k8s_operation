@@ -1,0 +1,5 @@
+@        IN SOA prisoner.iana.org. hostmaster.root-servers.org. (
+                                 2007070301 21600 900 604800 600 )
+;
+@       IN      NS      blackhole-2.iana.org.
+@       IN      NS      blackhole-1.iana.org.

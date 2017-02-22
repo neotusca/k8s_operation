@@ -1,0 +1,10 @@
+$TTL    3600
+@       IN      SOA     ns1.kkic.net.  root.ns1.kkic.net.  (
+                        2012051401 ; Serial
+                        1800       ; Refresh
+                        300        ; Retry
+                        3600000    ; Expire
+                        3600 )    ; Minimum
+
+        IN      NS     ns1.kkic.net.
+        IN      A      168.126.63.241

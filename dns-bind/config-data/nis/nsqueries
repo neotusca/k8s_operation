@@ -1,0 +1,22 @@
+#!/usr/bin/perl
+$statfile = "/data/named/syslog/named.stats";
+$memstatfile = "/data/named/syslog/named.memstats";
+unlink $statfile;
+unlink $memstatfile;
+$named_pid = `cat /var/named/named.pid`;
+
+system `rndc stats`;
+sleep 3;
+
+open(STAT, "<$statfile");
+
+$queries = 0;
+
+while(<STAT>) {
+        if(/^\s+(\d+) QUERY/) {
+              $queries += $1;
+        }
+
+        last if(/^\-\-\-\ Statistics Dump \-\-\-/);
+}
+print $queries . "\n";

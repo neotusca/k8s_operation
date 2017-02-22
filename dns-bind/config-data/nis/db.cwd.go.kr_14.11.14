@@ -1,0 +1,74 @@
+$TTL 43200
+@       IN      SOA     nis.dacom.co.kr.  dnsadm.bora.net. (
+                                2010042300  ;Serial
+                                43200   ;Refresh (12h)
+                                3600     ;Retry (1h)
+                                604800  ;Expire (7d)
+                                43200)  ;Minimum (12h)
+;
+@               IN      NS      nis.dacom.co.kr.
+@               IN      MX      0       nmail.cwd.go.kr.
+@               IN      TXT     "v=spf1 ip4:203.254.1.113 ip4:203.254.1.117 ip4:203.254.1.119 ip4:211.61.50.104 ip4:211.61.50.115 ip4:211.61.50.117 ip4:211.61.51.112 ip4:211.61.51.113 ip4:211.61.51.235 ip4:211.61.51.237 ip4:211.61.50.103 ip4:211.61.51.239 ~all"
+@     300          IN      A       114.111.56.38
+@     300          IN      A       114.111.56.47
+@     300          IN      A       114.111.56.97
+@     300          IN      A       114.111.56.142
+@     300          IN      A       114.111.57.12
+@     300          IN      A       114.111.57.32
+@     300          IN      A       114.111.57.52
+@     300          IN      A       118.107.168.13
+@     300          IN      A       118.107.168.33
+@     300          IN      A       118.107.168.57
+@     300          IN      A       118.107.168.78
+@     300          IN      A       118.107.168.98
+@     300          IN      A       114.111.58.13
+;
+m           300     IN      NS      shdns1.speedcdn.com.
+m           300     IN      NS      shdns2.speedcdn.com.
+m           300     IN      NS      shdns3.speedcdn.com.
+www         300     IN      NS      shdns1.speedcdn.com.
+www         300     IN      NS      shdns2.speedcdn.com.
+www         300     IN      NS      shdns3.speedcdn.com.
+english     300     IN      NS      shdns1.speedcdn.com.
+english     300     IN      NS      shdns2.speedcdn.com.
+english     300     IN      NS      shdns3.speedcdn.com.
+kidnews     300     IN      NS      shdns1.speedcdn.com.
+kidnews     300     IN      NS      shdns2.speedcdn.com.
+kidnews     300     IN      NS      shdns3.speedcdn.com.
+children    300     IN      NS      shdns1.speedcdn.com.
+children    300     IN      NS      shdns2.speedcdn.com.
+children    300     IN      NS      shdns3.speedcdn.com.
+nmail            IN      A       211.61.50.104
+ns               IN      A       211.61.50.101
+nsb              IN      A       211.61.51.108
+letter           IN      A       211.61.51.113
+letter           IN      MX      10  letter.cwd.go.kr.
+letter           IN      TXT     "v=spf1 ip4:211.61.51.112 ip4:211.61.51.113 -all"
+vod              IN      CNAME   vod.c1.cwd.go.kr.
+c1               IN      NS      3dns.nefficient.co.kr.
+cdn1             IN      A       211.233.26.2
+cdn2             IN      A       211.39.136.3
+photoessay       IN      A       211.245.21.193
+press            IN      A       211.61.51.213
+search           IN      A       211.61.51.106
+localhost           IN      A       127.0.0.1
+;
+blog     300     IN      NS      shdns1.speedcdn.com.
+blog     300     IN      NS      shdns2.speedcdn.com.
+blog     300     IN      NS      shdns3.speedcdn.com.
+rss      300     IN      NS      shdns1.speedcdn.com.
+rss      300     IN      NS      shdns2.speedcdn.com.
+rss      300     IN      NS      shdns3.speedcdn.com.
+www1         300     IN      NS      shdns1.speedcdn.com.
+www1         300     IN      NS      shdns2.speedcdn.com.
+www1         300     IN      NS      shdns3.speedcdn.com.
+english1     300     IN      NS      shdns1.speedcdn.com.
+english1     300     IN      NS      shdns2.speedcdn.com.
+english1     300     IN      NS      shdns3.speedcdn.com.
+blog2013     300     IN      A       61.247.193.231
+pressadm 300 IN NS shdns1.speedcdn.com.
+pressadm 300 IN NS shdns2.speedcdn.com.
+pressadm 300 IN NS shdns3.speedcdn.com.
+visit 300 IN NS shdns1.speedcdn.com.
+visit 300 IN NS shdns2.speedcdn.com.
+visit 300 IN NS shdns3.speedcdn.com.

@@ -1,0 +1,6 @@
+$TTL 86400
+@       IN      SOA     localhost. root.localhost. (
+                        1998042301 28800 14400 3600000 86400 )
+        IN      NS      localhost.
+
+1       IN      PTR     localhost.

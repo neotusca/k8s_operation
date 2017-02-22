@@ -1,7 +1,8 @@
 #!/bin/sh
 
-UUID_FULL=`grep secrets /proc/1/mountinfo | awk -F'/' '{print $6}'`
-UUID=${UUID_FULL:0:12}
+#UUID_FULL=`grep secrets /proc/1/mountinfo | awk -F'/' '{print $6}'`
+#UUID=${UUID_FULL:0:12}
+UUID=`hostname`
 
 
 echo "sed -e 's/\/data\/named/\/data\/named\/"$UUID"/'  /etc/named/named.conf > /etc/named/named-"$UUID".conf" > named-conf-change.sh

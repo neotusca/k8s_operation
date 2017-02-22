@@ -1,0 +1,5 @@
+$ORIGIN search.msn.com.
+auto    IN      SOA     auto.search.msn.com. sochul.bora.net. (
+                                2010071401 3600 600 604800 3600)
+        86400   IN      NS      xfout1.nlias.net.
+        86400   IN      A       61.78.35.200

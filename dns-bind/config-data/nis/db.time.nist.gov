@@ -1,0 +1,9 @@
+$TTL 600
+@        IN     SOA     nis.dacom.co.kr. dnsadm.bora.net. (
+                                        2007112700      ; serial (d. adams)
+                                        3600            ; refresh(1H)
+                                        1800            ; retry(30min)
+                                        1W              ; expiry(1Week)
+                                        600)            ; minimum(1H)
+                IN      NS      ns1.lgdacom.net.
+@               IN      A      	129.6.15.28 
